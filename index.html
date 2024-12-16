@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TravelBloom</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js"></script>
+<style>
+     
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      gap: 20px;
+    }
+
+    
+
+    /* Pop-Up Container */
+    .popup-container {
+     
+
+      position: relative;
+    }
+
+    .popup-results {
+      position: absolute;
+      top: 100%; /* Directly below the search bar */
+      left: 0;
+      right: 0;
+      background: rgb(245, 247, 247);
+      
+      border: 1px solid black;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      max-height:600px;
+      overflow-y: auto;
+      z-index: 10;
+      border-radius: 5px;
+      display: none; /* Hidden by default */
+      padding-bottom: 20px;
+    }
+
+    /* Individual Cards */
+    .popup-card {
+      
+      padding: 10px;
+      border-bottom: 1px solid black;
+      cursor: pointer;
+      color: black;
+      transition: background-color 0.2s;
+    }
+
+    .popup-card:last-child {
+      border-bottom: none;
+    }
+
+    .popup-card:hover {
+      background-color: rgb(65, 109, 109);
+    }
+
+    /* Message for No Results */
+    .no-results {
+      padding: 10px;
+      color: #555;
+      text-align: center;
+    }
+</style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="download-removebg-preview.png" alt="Logo" width="50px" height="27px">
+      TravelBloom
+    </div>
+    <nav>
+      <ul>
+        <li><a onclick="showSection('home')">Home</a></li>
+        <li><a onclick="showSection('about')">About Us</a></li>
+        <li><a onclick="showSection('contact')">Contact Us</a></li>
+      </ul>
+    </nav>
+    <div class="popup-container">
+      <div class="search-bar">
+        <input id="search-in" type="text" placeholder="Enter a destination or keyword" onkeyup="search()">
+        <button id="search-btn" onclick="search()">Search</button>
+        <button id="search-clear" onclick="clearSearch()">Clear</button>
+      </div>
+      <div id="popup-results" class="popup-results"></div>
+    </div>
+  
+  </header>
+
+  <main>
+    <section id="home">
+      <div class="hero">
+        <div class="content">
+          <h1>EXPLORE <br> DREAM <br> DESTINATION</h1>
+          <p>It encourages exploration of unfamiliar territories, embracing diverse cultures and landscapes Traveling opens doors to new experiences, cultures, and perspectives. It sparks adventure, creates lasting memories, fosters connections, and inspires personal growth while exploring the world’s wonders.</p>
+          <button>BOOK NOW</button>
+        </div>
+      </div>
+    </section>
+    <aside class="social-media">
+        <span></span>
+        <a href="#"><img src="images-removebg-preview.png" alt="Twitter"></a>
+        <a href="#"><img src="sm_5b0125139fe89-removebg-preview (1).png" alt="Facebook"></a>
+        <a href="#"><img src="ins-removebg-preview.png" alt="Instagram"></a>
+        <a href="#"><img src="youtube-removebg-preview.png" alt="YouTube"></a>
+    </aside>
+
+    <section id="about" style="display: none;">
+      <div class="about-content">
+        <h1 style="padding: 10px;">About Us</h1>
+        <div class="para">
+        <p >
+            Welcome to Our Company! We are a team of passionate individuals dedicated to <span id="spane" style="color: white;">excellent 
+            services/products to our customers</span> . Our mission is to provide the best experience for people traveling 
+            to different destinations around the world.
+        <br>
+        <br>
+       
+            Our values include integrity, innovation, customer satisfaction, and teamwork. We believe in putting 
+            our customers first and working together to achieve our goals.
+        <br>
+        <br>
+            Feel free to explore our website to learn more about what we offer!
+        </p>
+    </div>
+        <div class="team">
+          <h2>Our Team</h2>
+          <div class="team-members">
+            <div class="team-member">
+             
+               <img src="3052.png_860-removebg-preview.png" alt="">
+              <h3 style="color: white;">John Doe</h3>
+            
+            <P>Celine Thomas is responsible for...</P>
+              <p style=" color: white; background-color: teal; border: 2px solid teal ;border-radius: 10px; text-align: center; font-weight: bold;">CEO</p>
+            
+            </div>
+            <div class="team-member">
+              
+              <img src="3052.png_860-removebg-preview.png" alt="">
+              <h3 style="color: white;">Celina Thomas</h3>
+            
+            <P>Celine Thomas is responsible for...</P>
+              <p style=" color: white; background-color: teal; border: 2px solid teal ;border-radius: 10px; text-align: center ; font-weight: bold;">Team Lead</p>
+
+            </div>
+            <div class="team-member">
+              
+              <img src="3052.png_860-removebg-preview.png" alt="">
+              <h3 style="color: white;">Mike Tysen</h3>
+            
+            <P>Celine Thomas is responsible for...</P>
+              <p style=" color: white; background-color: teal; border: 2px solid teal ;border-radius: 10px; text-align: center; font-weight: bold;">Delivery Head</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" style="display: none;">
+    <div class="contact-section">
+      <div class="overlay">
+        <h1>Contact Us</h1>
+        <P style="color: #d4d0d0; font-size: 25px;">Get in touch...</P>
+      </div>
+        <form class="contact-form">
+          <div class="form-group">
+            <input type="text" name="name" placeholder="Name" required>
+          </div>
+          <div class="form-group">
+            <input type="email" name="email" placeholder="Email" required>
+          </div>
+          <div class="form-group">
+            <textarea name="message" rows="5" placeholder="Message" required></textarea>
+          </div>
+          <button type="submit">Submit</button>
+        </form>
+      
+    </div>
+    </section>
+ 
+
+    <script>
+      const searchInput = document.getElementById('search-in');
+const popupResults = document.getElementById('popup-results');
+
+// Simulated Data
+
+const cardsData = [
+  {
+    title: "Miami Beach, USA",
+    description: "Beautiful beaches and vibrant nightlife.",
+    category: " usa",
+    image: "360_F_233039700_7uxpfauh3qFVZZzYwV0Zu6VzOeG39jg6.jpg"
+  },
+  {
+    title: "Bora Bora",
+    description: "Exquisite lagoons and overwater bungalows.",
+    category: "beach",
+    image: "thumbnail-99a1d8d4-a128-456f-a8e2-6c659b4eb572-1713453358-800x580-f50_50.jpg"
+  },
+  {
+    title: "St. Patrick's Cathedral, USA",
+    description: "A stunning Neo-Gothic Catholic cathedral in NYC.",
+    category: "temple usa",
+    image: "NYC-Church-St-Patricks-IMG_1970-1024x768.jpg"
+  },
+  {
+    title: "Angkor Wat, Cambodia",
+    description: "A magnificent ancient temple complex.",
+    category: "temple",
+    image: "AngkorWat.jpg"
+  },
+  {
+    title: "Times Square, USA",
+    description: "The heart of NYC with lights and excitement.",
+    category: "usa",
+    image: "New_york_times_square-terabass.jpg"
+  },
+  {
+    title: "Maldives",
+    description: "Pristine beaches with crystal-clear waters.",
+    category: "beach",
+    image: "images.jpeg"
+  }
+];
+
+
+
+// Search Function
+function search() {
+  const query = searchInput.value.toLowerCase().trim();
+  popupResults.innerHTML = ""; // Clear previous results
+
+  if (query === "") {
+    popupResults.style.display = "none"; // Hide popup if input is empty
+    return;
+  }
+
+  let matchedResults = 0;
+
+  // Filter cards based on the query
+  cardsData.forEach(card => {
+    if (card.title.toLowerCase().includes(query) || card.category.toLowerCase().includes(query)) {
+      const cardElement = document.createElement("div");
+      cardElement.classList.add("popup-card");
+      cardElement.innerHTML = `
+        <img src="${card.image}" alt="${card.title}" style="width: 100%; height: auto; border-radius: 5px; margin-bottom: 10px;">
+        <strong>${card.title}</strong><br>
+        <small>${card.description}</small>
+      `;
+      cardElement.onclick = () => alert(`You selected: ${card.title}`);
+      popupResults.appendChild(cardElement);
+      matchedResults++;
+    }
+  });
+
+  // Show "No Results" if nothing matches
+  if (matchedResults === 0) {
+    popupResults.innerHTML = `<div class="no-results">No matching results found.</div>`;
+  }
+
+  popupResults.style.display = "block"; // Show popup
+}
+
+// Clear Search Function
+function clearSearch() {
+  searchInput.value = ""; // Clear input
+  popupResults.style.display = "none"; // Hide results
+}
+
+    </script>
+  </main>
+
+  
+</body>
+</html>
